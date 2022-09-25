@@ -1,0 +1,45 @@
+.list-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.time {
+  color: #64748b;
+  font-family: 'Roboto';
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.history-item-card {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+.logo {
+  height: 40px;
+  width: 40px;
+}
+.name-and-delete-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 80vw;
+}
+.domain-card {
+  margin-left: 20px;
+}
+.title {
+  color: #475569;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: -15px;
+}
+.domainUrl {
+  color: #64748b;
+}
+.button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}

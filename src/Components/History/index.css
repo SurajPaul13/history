@@ -1,0 +1,51 @@
+.bg-container {
+  box-sizing: border-box;
+}
+.header-card {
+  background-color: #3367d6;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.history-logo {
+  margin-left: 20px;
+}
+.input-card {
+  display: flex;
+  background-color: #2850a7;
+  margin-left: 50px;
+}
+.search-logo {
+  border-style: solid;
+  border-width: 1.2px;
+  border-right-width: 0px;
+  border-color: #6697ff;
+  padding: 5px;
+  height: 30px;
+}
+.input-bar {
+  border-style: solid;
+  border-width: 1.2px;
+  border-color: #6697ff;
+  padding: 5px;
+  background-color: #2850a7;
+  width: 250px;
+  outline: none;
+  color: #ffffff;
+}
+.history-section {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+.history-list {
+  width: 80vw;
+  box-shadow: 0px 0px 16px #bfbfbf;
+  padding: 20px;
+}
+.no-history {
+  color: #64748b;
+  font-family: 'Roboto';
+}
