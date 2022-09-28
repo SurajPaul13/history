@@ -3,7 +3,9 @@ import {Component} from 'react'
 import HistoryItem from '../HistoryItem'
 
 class History extends Component {
-  state = {searchInput: ''}
+  state = {searchInput: '', historyList: ''}
+
+  firstRender = true
 
   onSearchInput = event => {
     this.setState({searchInput: event.target.value})
@@ -11,15 +13,23 @@ class History extends Component {
 
   render() {
     const {initialHistoryList} = this.props
-    const {searchInput} = this.state
+    const {searchInput, historyList} = this.state
     let historyListCard
 
-    let historyList = initialHistoryList.filter(eachItem =>
-      eachItem.domainUrl.includes(searchInput.toLowerCase()),
-    )
+    if (this.firstRender === true) {
+      console.log(historyList)
+      this.setState({
+        historyList: initialHistoryList.filter(eachItem =>
+          eachItem.domainUrl.includes(searchInput.toLowerCase()),
+        ),
+      })
+      this.firstRender = false
+    }
 
     const deleteHistory = id => {
-      historyList = initialHistoryList.filter(eachItem => eachItem.id !== id)
+      this.setState({
+        historyList: historyList.filter(eachItem => eachItem.id !== id),
+      })
     }
 
     if (historyList.length !== 0) {
@@ -36,7 +46,7 @@ class History extends Component {
       )
     } else {
       historyListCard = (
-        <p className="no-history">There is no history to show</p>
+        <p className="no-history"> There is no history to show </p>
       )
     }
 
@@ -56,7 +66,7 @@ class History extends Component {
             />
             <input
               className="input-bar"
-              type="text"
+              type="search"
               placeholder="Search history"
               onChange={this.onSearchInput}
             />
