@@ -3,52 +3,51 @@ import {Component} from 'react'
 import HistoryItem from '../HistoryItem'
 
 class History extends Component {
-  state = {searchInput: '', historyList: ''}
-
-  firstRender = true
+  constructor(props) {
+    super(props)
+    const {initialHistoryList} = this.props
+    this.state = {
+      searchInput: '',
+      listItems: initialHistoryList,
+    }
+  }
 
   onSearchInput = event => {
     this.setState({searchInput: event.target.value})
   }
 
+  updateListState = listItems => {
+    this.setState({listItems})
+  }
+
+  deleteHistory = id => {
+    const {listItems} = this.state
+    const updatedList = listItems.filter(eachItem => eachItem.id !== id)
+
+    this.setState({listItems: updatedList})
+  }
+
   render() {
-    const {initialHistoryList} = this.props
-    const {searchInput, historyList} = this.state
-    let historyListCard
+    const {searchInput, listItems} = this.state
 
-    if (this.firstRender === true) {
-      console.log(historyList)
-      this.setState({
-        historyList: initialHistoryList.filter(eachItem =>
-          eachItem.domainUrl.includes(searchInput.toLowerCase()),
-        ),
-      })
-      this.firstRender = false
-    }
+    const historyList = listItems.filter(eachItem =>
+      eachItem.domainUrl.includes(searchInput.toLowerCase()),
+    )
 
-    const deleteHistory = id => {
-      this.setState({
-        historyList: historyList.filter(eachItem => eachItem.id !== id),
-      })
-    }
-
-    if (historyList.length !== 0) {
-      historyListCard = (
+    const historyListCard =
+      historyList.length !== 0 ? (
         <ul className="history-list">
           {historyList.map(eachItem => (
             <HistoryItem
               key={eachItem.id}
-              deleteHistory={deleteHistory}
+              deleteHistory={this.deleteHistory}
               historyDetails={eachItem}
             />
           ))}
         </ul>
+      ) : (
+        <p className="no-history">There is no history to show</p>
       )
-    } else {
-      historyListCard = (
-        <p className="no-history"> There is no history to show </p>
-      )
-    }
 
     return (
       <div className="bg-container">
